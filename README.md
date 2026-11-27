@@ -111,7 +111,12 @@ The bottom row has a **2u spacebar** and one less key than the rows above it.
 
 ### My layout: Colemak-DH ([`geonix/colemak-dh.vil`](geonix/colemak-dh.vil))
 
-This is my current layout. Its Lower and Raise layers copy the Corne's, so the arrow, symbol and number positions match across both boards.
+This is my main layout. It's built around using the mouse less:
+
+- **LOWER is for navigation and editing.** Your left hand gets the commands and modifiers, your right hand gets the arrows.
+- **RAISE is for numbers, F-keys and the wireless settings.**
+
+The previous version, which copied the Corne's Lower and Raise layers, is kept in [`geonix/colemak-dh-v1.vil`](geonix/colemak-dh-v1.vil). Load that file in Vial to switch back.
 
 #### Base (layer 0)
 
@@ -128,42 +133,64 @@ This is my current layout. Its Lower and Raise layers copy the Corne's, so the a
 ```
 
 - **Esc/Ctl** is a dual-purpose key: tap it for Esc, hold it for Ctrl.
-- Layer 1 is an exact copy of layer 0 and nothing switches to it, so in practice it isn't used.
+- Layer 1 must stay an exact copy of layer 0. The Geonix firmware switches layer 1 on by itself at startup when the board is in Mac mode, so anything different there would replace your base keys. That also leaves no free layer for a Lower + Raise "Adjust" layer: the board only has 4.
 
-#### Lower: arrows and symbols (hold LOWER, layer 2)
+#### Lower: navigation and editing (hold LOWER, layer 2)
 
 ```
 ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-│       │       │  Home │   ↑   │  End  │  PgUp │       │   &   │   *   │   (   │   0   │       │
+│       │       │ Tab ← │ Tab → │       │  PgUp │       │       │   ↑   │       │       │       │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│       │       │   ←   │   ↓   │   →   │  PgDn │       │   $   │   %   │   ^   │       │  Del  │
+│       │  Ctrl │  Opt  │  Cmd  │ Shift │  PgDn │       │   ←   │   ↓   │   →   │  Bksp │  Del  │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│       │       │       │       │       │       │       │   !   │   @   │   #   │   )   │       │
+│       │  Undo │  Cut  │  Copy │ Paste │       │       │  Mute │  Vol- │  Vol+ │  Play │  Next │
 ├───────┼───────┼───────┼───────┼───────┼───────┴───────┼───────┼───────┼───────┼───────┼───────┤
 │       │       │       │       │ (held)│               │       │       │       │       │       │
 └───────┴───────┴───────┴───────┴───────┴───────────────┴───────┴───────┴───────┴───────┴───────┘
 ```
 
-- Arrow keys are in an inverted T on R/S/T and F, with **Home/End** either side of ↑ and **PgUp/PgDn** next to them.
-- The symbols on the right hand are the same as on the Corne's Lower layer.
+**Left hand** (works one-handed while the right hand is on the mouse):
+- **Tab ← / Tab →** go to the previous and next tab (Cmd+Shift+[ and Cmd+Shift+]). This works in browsers, VS Code, Finder and Terminal.
+- **Undo / Cut / Copy / Paste** are Cmd+Z / X / C / V.
+- **PgUp / PgDn** scroll one screen up or down.
+- **Ctrl / Opt / Cmd / Shift** are on the home row, so you can hold them while the right hand uses the arrows.
 
-#### Raise: numbers, media, wireless and lighting (hold RAISE, layer 3)
+**Right hand:**
+- **Arrows** are in an inverted T, plus **Bksp** and **Del**.
+- **Media keys** are on the bottom row: Mute, Vol-, Vol+, Play/Pause, Next.
+
+**How to move and edit without the mouse.** The modifier decides how far a key goes, and the rule is the same for moving, selecting and deleting:
+
+| | Arrow keys | Bksp |
+|---|---|---|
+| no modifier | one character | delete a character |
+| **Opt** (left ring) | one **word** | delete a **word** |
+| **Cmd** (left middle) | to the start/end of the **line**, or ↑/↓ to the top/bottom of the document | delete to the start of the **line** |
+| add **Shift** (left index) | select instead of move | |
+
+For example, hold LOWER, then Opt + Shift with your left hand, and tap → twice: that selects the next two words.
+
+> Ctrl+Backspace is the **Windows** shortcut for deleting a word. On a Mac it only deletes one character.
+
+#### Raise: numbers, F-keys and wireless (hold RAISE, layer 3)
 
 ```
 ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-│       │   `   │  BT 1 │  BT 2 │  BT 3 │  2.4G │       │   7   │   8   │   9   │   -   │   =   │
+│  BT 1 │   F1  │   F2  │   F3  │   F4  │  USB  │   `   │   7   │   8   │   9   │   -   │   =   │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│       │  Mute │  Vol- │  Vol+ │  Play │  Next │       │   4   │   5   │   6   │   [   │   ]   │
+│  BT 2 │   F5  │   F6  │   F7  │   F8  │  2.4G │       │   4   │   5   │   6   │   [   │   ]   │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│       │ LED on│LEDmode│  LED- │  LED+ │  Logo │       │   1   │   2   │   3   │   0   │   \   │
+│  BT 3 │   F9  │  F10  │  F11  │  F12  │Battery│       │   1   │   2   │   3   │   0   │   \   │
 ├───────┼───────┼───────┼───────┼───────┼───────┴───────┼───────┼───────┼───────┼───────┼───────┤
-│       │  USB  │Battery│       │       │               │ (held)│ Enter │   .   │       │       │
+│  LEDs │       │       │       │       │               │ (held)│ Enter │   .   │       │       │
 └───────┴───────┴───────┴───────┴───────┴───────────────┴───────┴───────┴───────┴───────┴───────┘
 ```
 
-- The right hand is a number pad (same as the Corne's Raise layer), with **Enter** and **.** under the thumb.
-- Media keys are on the left home row. Wireless connection keys are on the left top row: **BT 1–3**, **2.4G** (USB dongle) and **USB** (wired).
-- Lighting keys are on the left bottom row. **Battery** shows the charge level on the LEDs.
+- **The right hand is a number pad** (7-8-9 on top, 0 at the bottom right), with `` ` `` `-` `=` `[` `]` `\` around it. **Enter** and **.** are under the thumb.
+- **Symbols are the shifted numbers**, so hold Shift (left pinky) while on Raise: Shift+7 = `&`, Shift+4 = `$`, Shift+1 = `!`, and so on.
+- **F1–F12** are on the left in a 4×3 block.
+- **BT 1–3 / 2.4G / USB** pick the connection. **Battery** shows the charge on the LEDs.
+- **LEDs** turns all the backlighting on or off, and the board remembers the setting. The light that shows when you hold LOWER or RAISE is built into the Geonix firmware and can't be turned off from Vial.
 
 ### Factory default: QWERTY ([`geonix/default.vil`](geonix/default.vil))
 
@@ -189,7 +216,7 @@ Layer 1 is the **Mac mode** copy of this layer, with **Opt** and **Cmd** swapped
 
 ```
 ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-│  USB  │  BT 1 │  BT 2 │  BT 3 │  2.4G │LEDmode│  →Mac │  →Win │   [   │   ]   │   \   │ LED on│
+│  USB  │  BT 1 │  BT 2 │  BT 3 │  2.4G │LEDmode│  →Mac │  →Win │   [   │   ]   │   \   │  LEDs │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
 │   `   │   1   │   2   │   3   │   4   │   5   │   6   │   7   │   8   │   9   │   0   │   -   │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
@@ -209,14 +236,13 @@ Layer 1 is the **Mac mode** copy of this layer, with **Opt** and **Cmd** swapped
 
 ### Notes for improving the layout
 
-Things worth deciding on, comparing my Colemak-DH layout with the other boards:
+Done in the current version: arrows and modifiers on Lower, dedicated tab-switching keys, F1–F12, and Cmd-based Undo/Cut/Copy/Paste.
+
+Still open:
 
 - **Esc appears three times**: the Esc/Ctl home-row key, bottom left, and bottom right next to Del. Two of those spots could hold something more useful.
-- **There are no F1–F12 keys anywhere.** The Planck has them on Raise. The Corne doesn't have them either.
-- **There's no Adjust layer.** Holding Lower + Raise does nothing special, so wireless and lighting keys take up the left half of Raise. Moving them to a Lower + Raise layer, as on the Corne, would free that space.
-- **Layer 1 is unused** (a duplicate of the base layer). It could become a QWERTY layer for other people, or a gaming layer.
-- **The thumb keys differ between boards.** On the Corne the inner thumbs are Lower / Space and Esc / Raise. On the Geonix it's Lower / Space / Raise, with Cmd and Opt next to them. Matching them would make switching boards easier.
-- **Ctrl is on the home row on all three boards** (Esc/Ctl here, Ctrl on the Corne), but the bottom-left key differs (Esc here, Ctrl on the Corne and Planck).
+- **The Corne and Planck still use the old setup** (arrows on the left, symbols on Lower). Updating them to match would make switching boards easier.
+- **The thumb keys differ between boards.** On the Corne the inner thumbs are Lower / Space and Esc / Raise. On the Geonix it's Lower / Space / Raise, with Cmd and Opt next to them.
 
 ---
 
